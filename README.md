@@ -1,2 +1,10 @@
-# WAD_CW
-Web Application Development Coursework (ID: 00011888)
+# Westminster Internation University in Tashkent
+
+ -------
+#### Web Application Development
+
+> The repository is created for Web Application Development module coursework
+
+`
+Student ID: 00011888
+`
