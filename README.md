@@ -1,4 +1,4 @@
-# Westminster Internation University in Tashkent
+# Westminster International University in Tashkent
 
  -------
 #### Web Application Development
