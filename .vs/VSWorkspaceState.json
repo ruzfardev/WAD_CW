@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Models",
+    "\\Properties",
+    "\\Views"
   ],
-  "SelectedNode": "\\README.md",
+  "SelectedNode": "\\Models\\ErrorViewModel.cs",
   "PreviewInSolutionExplorer": false
 }
