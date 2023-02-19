@@ -375,3 +375,4 @@ D:\WIUT\Lev-5\WAD\WAD_CW\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 D:\WIUT\Lev-5\WAD\WAD_CW\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\WIUT\Lev-5\WAD\WAD_CW\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\WIUT\Lev-5\WAD\WAD_CW\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\WIUT\Lev-5\WAD\WAD_CW\obj\Debug\netcoreapp3.1\Razor\Views\Users\Index.cshtml.g.cs

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WAD_CW.DAL;
+using WAD_CW.Repository;
 
 namespace WAD_CW
 {
@@ -29,6 +30,13 @@ namespace WAD_CW
             services.AddDbContext<AppDbContext>(
                 options => options.UseSqlServer(connectionString)
                 );
+
+
+            services.AddScoped<IUsersRepository, UsersRepository>();
+
+
+
+
             services.AddControllersWithViews();
         }
 
