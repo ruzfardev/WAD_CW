@@ -14,11 +14,9 @@ namespace WAD_CW.Models
         public int ServingSize { get; set; }
         public int UserId { get; set; }
         [ForeignKey("UserId")]
-        public Users User { get; set; }
-
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
-        public Categories CategoryName { get; set; }
+        public string Image { get; set; }
     }
 }
 

@@ -1,0 +1,49 @@
+﻿@model WAD_CW.Models.RecipeView
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="row">
+    <form enctype="multipart/form-data" method="post" class="bg-white m-auto p-4 w-50 rounded border">
+        <h2 class="text-info text-center">Add your recipe</h2>
+        <hr/>
+            <div class="form-group">
+                <label asp-for="RecipeName" class="control-label"></label>
+                <input asp-for="RecipeName" class="form-control" />
+                <span asp-validation-for="RecipeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        <div class="form-group">
+            <label asp-for="Ingredients" class="control-label"></label>
+            <input asp-for="Ingredients" class="form-control" />
+            <span asp-validation-for="Ingredients" class="text-danger"></span>
+        </div>
+        <div class="row g-3">
+            <div class="form-group col">
+                <label asp-for="CookingTime" class="control-label"></label>
+                <input asp-for="CookingTime" class="form-control" />
+                <span asp-validation-for="CookingTime" class="text-danger"></span>
+            </div>
+        <div class="form-group col">
+            <label asp-for="ServingSize" class="control-label"></label>
+            <input asp-for="ServingSize" class="form-control" />
+            <span asp-validation-for="ServingSize" class="text-danger"></span>
+        </div>
+        </div>
+        <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
+            </div>
+        <div class="form-group mb-2">
+            <label asp-for="Image" class="form-label"></label>
+            <input asp-for="Image" id="Image" class="form-control" type="file"/>
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+            <div class="form-group d-grid g-2">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+</div>
