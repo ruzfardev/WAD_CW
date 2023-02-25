@@ -47,3 +47,4 @@ D:\WIUT\Lev-5\WAD\WADAPI\obj\Debug\netcoreapp3.1\WADAPI.csproj.CopyComplete
 D:\WIUT\Lev-5\WAD\WADAPI\obj\Debug\netcoreapp3.1\WADAPI.dll
 D:\WIUT\Lev-5\WAD\WADAPI\obj\Debug\netcoreapp3.1\WADAPI.pdb
 D:\WIUT\Lev-5\WAD\WADAPI\obj\Debug\netcoreapp3.1\WADAPI.genruntimeconfig.cache
+D:\WIUT\Lev-5\WAD\WADAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll

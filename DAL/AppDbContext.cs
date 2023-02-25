@@ -19,7 +19,7 @@ namespace WADAPI.DAL
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Data Source=.;Initial Catalog=CW;Integrated Security=True;Pooling=False");
+                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=CWDB;Integrated Security=True;Pooling=False");
             }
         }
     }
