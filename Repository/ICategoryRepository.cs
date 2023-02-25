@@ -8,7 +8,7 @@ namespace WADAPI.Repository
         IEnumerable<Categories> GetAllCategories();
         Categories GetById(int id);
         void Add(Categories category);
-        void Update(int id, Categories category);
+        void Update(Categories category);
         void Delete(int id);
     }
 }

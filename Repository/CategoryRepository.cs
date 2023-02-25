@@ -38,7 +38,7 @@ namespace WADAPI.Repository
             return cate;
         }
 
-        public void Update(int id, Categories category)
+        public void Update(Categories category)
         {
             ctx.Entry(category).State =
                 Microsoft.EntityFrameworkCore.EntityState.Modified;
