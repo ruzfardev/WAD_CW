@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WADAPI.DAL;
+using WADAPI.Models;
 using WADAPI.Repository;
 
 namespace WADAPI
@@ -29,6 +30,8 @@ namespace WADAPI
 
 
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IUsersRepository, UsersRepository>();
+            services.AddScoped<IRepository<Recipes>, RecipesRepository>();
             services.AddControllers();
             services.AddSwaggerGen();
         }
