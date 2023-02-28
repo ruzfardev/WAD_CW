@@ -6,7 +6,7 @@ using WADAPI.Models;
 
 namespace WADAPI.Repository
 {
-    public class CategoryRepository : ICategoryRepository
+    public class CategoryRepository : IRepository<Categories>
     {
         private readonly AppDbContext ctx;
 
@@ -27,15 +27,15 @@ namespace WADAPI.Repository
             Save();
         }
 
-        public IEnumerable<Categories> GetAllCategories()
+        public IEnumerable<Categories> GetAll()
         {
             return ctx.Categories.ToList();
         }
 
         public Categories GetById(int id)
         {
-            var cate = ctx.Categories.Find(id);
-            return cate;
+            var category = ctx.Categories.Find(id);
+            return category;
         }
 
         public void Update(Categories category)

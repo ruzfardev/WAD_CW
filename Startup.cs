@@ -29,8 +29,8 @@ namespace WADAPI
             );
 
 
-            services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddScoped<IUsersRepository, UsersRepository>();
+            services.AddScoped<IRepository<Categories>, CategoryRepository>();
+            services.AddScoped<IRepository<Users>, UsersRepository>();
             services.AddScoped<IRepository<Recipes>, RecipesRepository>();
             services.AddControllers();
             services.AddSwaggerGen();
