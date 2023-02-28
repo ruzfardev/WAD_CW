@@ -12,8 +12,8 @@ namespace WADAPI.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly ICategoryRepository _categoryRepository;
-        public CategoryController(ICategoryRepository categoryRepository)
+        private readonly IRepository<Categories> _categoryRepository;
+        public CategoryController(IRepository<Categories> categoryRepository)
         {
             _categoryRepository = categoryRepository;
         }
@@ -21,7 +21,7 @@ namespace WADAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var category = _categoryRepository.GetAllCategories();
+            var category = _categoryRepository.GetAll();
             return new OkObjectResult(category);
         }
         // GET: api/Category/5

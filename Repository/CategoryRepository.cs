@@ -22,8 +22,7 @@ namespace WADAPI.Repository
 
         public void Delete(int id)
         {
-            var category = ctx.Categories.Find(id);
-            ctx.Categories.Remove(category);
+            ctx.Categories.Remove(this.GetById(id));
             Save();
         }
 
@@ -34,8 +33,7 @@ namespace WADAPI.Repository
 
         public Categories GetById(int id)
         {
-            var category = ctx.Categories.Find(id);
-            return category;
+            return ctx.Categories.Find(id);
         }
 
         public void Update(Categories category)

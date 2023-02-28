@@ -21,8 +21,7 @@ namespace WADAPI.Repository
 
         public void Delete(int id)
         {
-            var user = _dbContext.Users.Find(id);
-            _dbContext.Users.Remove(user);
+            _dbContext.Users.Remove(this.GetById(id));
             Save();
         }
 

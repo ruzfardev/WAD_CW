@@ -22,8 +22,7 @@ namespace WADAPI.Repository
 
         public void Delete(int id)
         {
-            var recipe = ctx.Recipes.Find(id);
-            ctx.Recipes.Remove(recipe);
+            ctx.Recipes.Remove(this.GetById(id));
             Save();
         }
 
@@ -36,8 +35,7 @@ namespace WADAPI.Repository
 
         public Recipes GetById(int id)
         {
-            var recipe = ctx.Recipes.Find(id);
-            return recipe;
+            return ctx.Recipes.Find(id);
         }
 
         public void Update(Recipes entity)

@@ -12,8 +12,8 @@ namespace WADAPI.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IUsersRepository _usersRepository;
-        public UsersController(IUsersRepository usersRepository)
+        private readonly IRepository<Users> _usersRepository;
+        public UsersController(IRepository<Users> usersRepository)
         {
             _usersRepository = usersRepository;
         }
@@ -21,14 +21,14 @@ namespace WADAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var user = _usersRepository.GetAllUsers();
+            var user = _usersRepository.GetAll();
             return new OkObjectResult(user);
         }
         // GET: api/Users/5
         [HttpGet("{id}", Name = "Users")]
         public IActionResult Get(int id)
         {
-            var user = _usersRepository.GetUserById(id);
+            var user = _usersRepository.GetById(id);
             return new OkObjectResult(user);
         }
         // POST: api/Users
@@ -37,7 +37,7 @@ namespace WADAPI.Controllers
         {
             using (var scope = new TransactionScope())
             {
-                _usersRepository.CreateUser(user);
+                _usersRepository.Add(user);
                 scope.Complete();
                 return CreatedAtAction(nameof(Get), new { id = user.UserId }, user);
             }
@@ -50,7 +50,7 @@ namespace WADAPI.Controllers
             {
                 using (var scope = new TransactionScope())
                 {
-                    _usersRepository.UpdateUser(user);
+                    _usersRepository.Update(user);
                     scope.Complete();
                     return new OkResult();
                 }
@@ -61,7 +61,7 @@ namespace WADAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _usersRepository.DeleteUser(id);
+            _usersRepository.Delete(id);
             return new OkResult();
         }
     }
