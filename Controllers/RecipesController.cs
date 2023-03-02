@@ -13,9 +13,11 @@ namespace WADAPI.Controllers
     public class RecipesController : ControllerBase
     {
         private readonly IRepository<Recipes> _recipesRepository;
-        public RecipesController(IRepository<Recipes> recipesRepository)
+        private readonly IFileService _fileService;
+        public RecipesController(IRepository<Recipes> recipesRepository, IFileService fileService)
         {
             _recipesRepository = recipesRepository;
+            _fileService = fileService;
         }
         // GET: api/Recipes
         [HttpGet]
@@ -33,12 +35,21 @@ namespace WADAPI.Controllers
         }
         // POST: api/Recipes
         [HttpPost]
-        public IActionResult Post([FromBody] Recipes recipe)
+        public IActionResult Post([FromForm] Recipes recipe)
         {
             using (var scope = new TransactionScope())
             {
-                _recipesRepository.Add(recipe);
-                scope.Complete();
+                if (recipe.ImageFile != null)
+                {
+                    var fileResult = _fileService.SaveImage(recipe.ImageFile);
+                    if (fileResult.Item1 == 1)
+                    {
+                        recipe.Image = fileResult.Item2; // getting name of image
+                    }
+                    _recipesRepository.Add(recipe);
+                    scope.Complete();
+                }
+                
                 return CreatedAtAction(nameof(Get), new { id = recipe.Id }, recipe);
             }
         }
