@@ -36,10 +36,16 @@ namespace WADAPI.Repository
             return ctx.Recipes.Find(id);
         }
 
-        public void Update(Recipes entity)
+        public void Update(Recipes entity, int id)
         {
-            ctx.Entry(entity).State =
-                Microsoft.EntityFrameworkCore.EntityState.Modified;
+            var existingEntity = ctx.Recipes.FirstOrDefault(r => r.Id == id);
+
+            if (existingEntity != null)
+            {
+                ctx.Entry(entity).State =
+                    Microsoft.EntityFrameworkCore.EntityState.Modified;
+                Save();
+            }
         }
 
         public void Save()

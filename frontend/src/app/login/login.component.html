@@ -1,0 +1,41 @@
+<div class="modal modal-sheet position-static d-block p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content rounded-4 shadow">
+        <div class="modal-header p-5 pb-4 text-center border-bottom-0">
+          <h1 class="fw-bold mb-0 fs-2 text-info ">Login</h1>
+        </div>
+        <div class="modal-body p-5 pt-0">
+          <form
+          [formGroup]="loginForm"
+          (ngSubmit)="onSubmit()"
+          >
+            <div class="form-floating mb-3">
+              <input 
+              required="true"
+              type="email" 
+              class="form-control rounded-3" 
+              id="floatingInput" 
+              placeholder="name@example.com"
+                formControlName="email"
+              >
+              <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input required="true" formControlName="password" type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
+              <label for="floatingPassword">Password</label>
+            </div>
+            <p class="text-muted text-center">
+                Do not have an account?
+                <a routerLink="/register" class="text-info">Register</a>
+            </p>
+            <hr class="my-4">
+            <button class="w-100 mb-2 btn btn-lg text-light rounded-3 btn-info" type="submit" [disabled]="isSubmitting" >
+              <!-- show spinner from bootstrap if is submitting true -->
+              <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              <span *ngIf="!isSubmitting">Login</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

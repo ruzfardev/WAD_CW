@@ -1,0 +1,51 @@
+<div class="row p-2">
+  <div class="col-md-12" *ngIf="isLoading">
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border" role="status">
+        <span class="sr-only"></span>
+      </div>
+  </div>
+  </div>
+  
+  <div class="col-md-3 mb-4"
+   *ngFor="let recipe of RecipesList">
+    <div class="card border-info">
+      <div class="card-header">
+      <button class="btn btn-outline-info rounded-circle p-2 d-flex justify-content-center align-items-center">
+        <i class="material-icons fs-6">bookmark</i>
+      </button>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{ recipe.recipeName }}</h5>
+        <p class="card-text"
+          style="max-height: 40px; overflow-y: hidden;"
+        >{{ recipe.description }}</p>
+        <div class="d-flex g-3 justify-content-between">
+            <a 
+              *ngIf="recipe.userId === user.userId"
+            class="btn btn-success d-flex justify-content-center text-light" type="button"
+            [routerLink]="[
+              '/recipes/edit',
+            recipe.id
+            ]"
+            >
+            <i class="material-icons">
+              edit
+            </i>
+            <span>
+              View
+            </span>
+            </a>
+            <a class="btn btn-info d-flex justify-content-center text-light" type="button"
+            [routerLink]="['/recipes', recipe.id]"
+            >
+            <i class="material-icons">visibility</i>
+            <span>
+              View
+            </span>
+            </a>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

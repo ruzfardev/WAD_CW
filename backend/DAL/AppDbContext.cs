@@ -13,6 +13,7 @@ namespace WADAPI.DAL
         public DbSet<Users> Users { get; set; }
         public DbSet<Categories> Categories { get; set; }
         public DbSet<Recipes> Recipes { get; set; }
+        public DbSet<Bookmarks> Bookmarks { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\WIUT\\Lev-5\\WAD\\WADAPI\\WADAPI.csproj": {}
+    "D:\\WIUT\\Lev-5\\WAD\\WADAPI\\backend\\WADAPI.csproj": {}
   },
   "projects": {
-    "D:\\WIUT\\Lev-5\\WAD\\WADAPI\\WADAPI.csproj": {
+    "D:\\WIUT\\Lev-5\\WAD\\WADAPI\\backend\\WADAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\WIUT\\Lev-5\\WAD\\WADAPI\\WADAPI.csproj",
+        "projectUniqueName": "D:\\WIUT\\Lev-5\\WAD\\WADAPI\\backend\\WADAPI.csproj",
         "projectName": "WADAPI",
-        "projectPath": "D:\\WIUT\\Lev-5\\WAD\\WADAPI\\WADAPI.csproj",
+        "projectPath": "D:\\WIUT\\Lev-5\\WAD\\WADAPI\\backend\\WADAPI.csproj",
         "packagesPath": "C:\\Users\\Farrukh Ruzmetov6\\.nuget\\packages\\",
-        "outputPath": "D:\\WIUT\\Lev-5\\WAD\\WADAPI\\obj\\",
+        "outputPath": "D:\\WIUT\\Lev-5\\WAD\\WADAPI\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Farrukh Ruzmetov6\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Microsoft.AspNet.WebApi.Cors": {
+              "target": "Package",
+              "version": "[5.2.9, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -80,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

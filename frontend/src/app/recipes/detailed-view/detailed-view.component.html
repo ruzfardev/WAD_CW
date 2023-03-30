@@ -1,0 +1,36 @@
+<div class="container w-50  p-2">
+    <div class="card bg-light">
+        <div class="card-body">
+          <h5 class="card-title fs-2">{{Recipe.recipeName}}</h5>
+          <div class="card-text fs-4">
+            <strong>
+                Description:
+            </strong>
+            {{Recipe.description}}
+          </div>
+          <div class="card-text">
+            <strong>
+                Ingredients:
+            </strong>
+            {{Recipe.ingredients}}
+          </div>
+            <div class="d-flex justify-content-between">
+                <div class="d-flex">
+                <div class="d-flex align-items-center">
+                    <i class="material-icons">schedule</i>
+                    <span class="mx-1">{{Recipe.cookingTime}} mins</span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <i class="material-icons">people</i>
+                    <span class="mx-1">{{Recipe.servingSize}} servings</span>
+                </div>
+                </div>
+                <button class="btn btn-outline-info rounded-circle p-2 d-flex justify-content-center align-items-center">
+                    <i class="material-icons fs-4">bookmark</i>
+                </button>
+            </div>
+            <button (click)="back()" class="btn btn-info btn-block mt-3">Back</button>
+            <button *ngIf="user.userId === Recipe.userId" (click)="back()" class="btn mx-3 btn-success btn-block mt-3">Edit</button>
+            <button *ngIf="user.userId === Recipe.userId" (click)="back()" class="btn btn-danger btn-block mt-3">Delete</button>
+        </div>
+    </div>

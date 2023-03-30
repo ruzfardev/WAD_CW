@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Transactions;
+using System.Web.Http.Results;
 using Microsoft.AspNetCore.Mvc;
 using WADAPI.Models;
 using WADAPI.Repository;
+using OkResult = Microsoft.AspNetCore.Mvc.OkResult;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,8 +14,8 @@ namespace WADAPI.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IRepository<Users> _usersRepository;
-        public UsersController(IRepository<Users> usersRepository)
+        private readonly IUserRepository _usersRepository;
+        public UsersController(IUserRepository usersRepository)
         {
             _usersRepository = usersRepository;
         }
@@ -64,5 +66,20 @@ namespace WADAPI.Controllers
             _usersRepository.Delete(id);
             return new OkResult();
         }
+
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] LoginModel request)
+        {
+            var user = _usersRepository.ValidateUser(request.Email, request.Password);
+
+            if (user != null)
+            {
+                // You can return the user data or a token for the client to store and use for authentication
+                return new OkObjectResult(user);
+            }
+
+            return BadRequest(new { message = "Error" });
+        }
+
     }
 }

@@ -9,8 +9,8 @@ using WADAPI.DAL;
 namespace WADAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230318104838_db_updated")]
-    partial class db_updated
+    [Migration("20230330064213_new_database")]
+    partial class new_database
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,6 +19,24 @@ namespace WADAPI.Migrations
                 .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("WADAPI.Models.Bookmarks", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Bookmarks");
+                });
 
             modelBuilder.Entity("WADAPI.Models.Categories", b =>
                 {

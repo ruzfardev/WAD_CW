@@ -1,0 +1,47 @@
+<!-- add-edit.component.html -->
+<div class="container">
+    <div class="text-center">
+      <h2>{{pageTitle}}</h2>
+    </div>
+      <div class="col-md-7 mx-auto col-lg-8">
+        <form [formGroup]="recipeForm"
+               (ngSubmit)="onSubmit()">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="recipeName">Recipe Name</label>
+              <input type="text" class="form-control" id="recipeName" formControlName="recipeName" required>
+            </div>
+            <div class="col-sm-6">
+              <label for="categoryId">Category</label>
+              <select class="form-control" id="categoryId" formControlName="categoryId">
+                <option *ngFor="let category of categories" [value]="category.categoryId">{{ category.categoryName }}</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="description">Description</label>
+              <textarea class="form-control" id="description" formControlName="description"></textarea>
+            </div>
+
+            <div class="col-12">
+              <label for="ingredients">Ingredients</label>
+              <textarea class="form-control" id="ingredients" formControlName="ingredients" placeholder="Ingredients with comma separated"></textarea>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="cookingTime">Cooking Time</label>
+              <input type="number" class="form-control" id="cookingTime" formControlName="cookingTime">
+            </div>
+            <div class="col-sm-6">
+              <label for="servingSize">Serving Size</label>
+              <input type="number" class="form-control" id="servingSize" formControlName="servingSize">            
+            </div>
+          </div>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-secondary my-2 mx-2" type="button" (click)="cancel()">Cancel</button>
+            <button class="btn btn-info text-light my-2" type="submit">
+              {{buttonText}}
+            </button>
+          </div>
+        </form>
+      </div>
+</div>

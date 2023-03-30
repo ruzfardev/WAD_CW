@@ -6,7 +6,7 @@ using WADAPI.Models;
 
 namespace WADAPI.Repository
 {
-    public class UsersRepository : IRepository<Users>
+    public class UsersRepository : IUserRepository
     {
         private readonly AppDbContext _dbContext;
         public UsersRepository(AppDbContext dbContext)
@@ -41,6 +41,14 @@ namespace WADAPI.Repository
         {
             _dbContext.Entry(user).State =
                 Microsoft.EntityFrameworkCore.EntityState.Modified;
+        }
+        // Login user.
+        // Find user with provided email and password if there is user
+        // return it
+        public Users ValidateUser(string email, string password)
+        {
+            var user = _dbContext.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+            return user;
         }
         public void Save()
         {
