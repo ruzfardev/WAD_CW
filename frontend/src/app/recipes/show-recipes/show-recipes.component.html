@@ -11,8 +11,8 @@
    *ngFor="let recipe of RecipesList">
     <div class="card border-info">
       <div class="card-header">
-      <button class="btn btn-outline-info rounded-circle p-2 d-flex justify-content-center align-items-center">
-        <i class="material-icons fs-6">bookmark</i>
+      <button (click)="addBookmark(recipe.id)" *ngIf="!isBookmarked(recipe.id)" class="btn btn-outline-info rounded-circle p-2 d-flex justify-content-center align-items-center">
+        <i  class="material-icons fs-6">bookmark</i>
       </button>
       </div>
       <div class="card-body">

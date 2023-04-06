@@ -52,6 +52,7 @@ export class SharedService {
       {
         ...val,
         userId: this.user.userId,
+        categoryId: Number(val.categoryId)
       }
     , {headers});
   }
@@ -81,5 +82,27 @@ export class SharedService {
       }
     });
   }
+
+  addBookmark(recipeId: number) {
+    try {
+      const response = this.https.post(this.APIUrl + '/Bookmark', {
+        recipeId,
+        userId: this.user.userId,
+      });
+      return response;
+    } catch (error: any) {
+      throw new Error('Something went wrong');
+    }
+  }
+
+  getUserBookmarks(): Observable<any[]> {
+    return this.https.get<any>(this.APIUrl + '/Bookmark/' + this.user.userId, {
+      headers: {
+        'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": "*"
+      }
+    });
+  }
+
 
 }
