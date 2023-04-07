@@ -1,4 +1,3 @@
-# Westminster International University in Tashkent
 # SWITCH TO MASTER BRANCH
  -------
 #### Web Application Development
