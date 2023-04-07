@@ -14,20 +14,20 @@ export class ShowRecipesComponent {
   user: any;
   userSubscription: Subscription;
   userBookmarks: any = [];
-  constructor(public service: SharedService, private userService: UserService) { 
+  constructor(public service: SharedService, private userService: UserService) {
     this.userSubscription = this.userService.getUserSubject().subscribe((user: any) => {
       this.user = user;
     });
-    this.userBookmarks = this.service.getUserBookmarks();
+    // this.userBookmarks = this.service.getUserBookmarks();
   }
-  
+
   ngOnInit():void {
     this.refreshRecipesList();
     this.isBookmarksLoading = true;
-    this.userBookmarks = this.service.getUserBookmarks().subscribe((bookmarks: any) => {
-      this.userBookmarks = bookmarks;
-      this.isBookmarksLoading = false;
-    } );
+    // this.userBookmarks = this.service.getUserBookmarks().subscribe((bookmarks: any) => {
+    //   this.userBookmarks = bookmarks;
+    //   this.isBookmarksLoading = false;
+    // } );
   }
 
   refreshRecipesList() {
@@ -40,17 +40,17 @@ export class ShowRecipesComponent {
   }
   isBookmarked(recipeId: number): boolean {
     // Check if the recipe is bookmarked by the current user
-    if (this.userBookmarks && !this.isBookmarksLoading) {
-      console.log(this.userBookmarks);
-      console.log(this.RecipesList);
-      this.userBookmarks.forEach((bookmark: any) => { 
-        if (bookmark.recipeId === recipeId) {
-          return true;
-        }else{
-          return false;
-        }
-      });
-    }
+    // if (this.userBookmarks && !this.isBookmarksLoading) {
+    //   console.log(this.userBookmarks);
+    //   console.log(this.RecipesList);
+    //   this.userBookmarks.forEach((bookmark: any) => {
+    //     if (bookmark.recipeId === recipeId) {
+    //       return true;
+    //     }else{
+    //       return false;
+    //     }
+    //   });
+    // }
     return false;
 
   }

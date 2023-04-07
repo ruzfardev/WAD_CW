@@ -9,7 +9,7 @@ export class SharedService {
   readonly APIUrl = "https://localhost:5001/api";
   userSubscription : Subscription;
   user: any;
-  constructor(private https: HttpClient, private userService: UserService,) { 
+  constructor(private https: HttpClient, private userService: UserService,) {
     this.userSubscription = this.userService.getUserSubject().subscribe((user: any) => {
       this.user = user;
     });
@@ -19,7 +19,7 @@ export class SharedService {
     try {
       const response = this.https.post(this.APIUrl + '/Users/Login', val);
       return response;
-  
+
     } catch (error: any) {
       let errMsg: string;
       if(error.status === 400) {
@@ -48,7 +48,7 @@ export class SharedService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    return this.https.post(this.APIUrl + '/Recipes', 
+    return this.https.post(this.APIUrl + '/Recipes',
       {
         ...val,
         userId: this.user.userId,
@@ -58,10 +58,12 @@ export class SharedService {
   }
 
   updateRecipe(val: any, id: number) {
-    return this.https.put(this.APIUrl + `/Recipes/${id}`, 
+    return this.https.put(this.APIUrl + `/Recipes`,
       {
         ...val,
+        id: id,
         userId: this.user.userId,
+        categoryId: Number(val.categoryId)
       }
     );
   }
@@ -82,6 +84,19 @@ export class SharedService {
       }
     });
   }
+  getRecipeByUserId(val: number): Observable<any> {
+    try {
+      const response = this.https.get(this.APIUrl + '/Recipes/byUser/' + val, {
+        headers: {
+          'Content-Type': 'application/json',
+          "Access-Control-Allow-Origin": "*"
+        }
+      });
+      return response;
+    }catch (error: any) {
+      throw new Error('Something went wrong');
+    }
+  }
 
   addBookmark(recipeId: number) {
     try {
@@ -95,6 +110,14 @@ export class SharedService {
     }
   }
 
+  deleteRecipe(id: number) {
+    try {
+      const response = this.https.delete(this.APIUrl + '/Recipes/' + id);
+      return response;
+    }catch (error: any) {
+      throw new Error('Something went wrong');
+    }
+  }
   getUserBookmarks(): Observable<any[]> {
     return this.https.get<any>(this.APIUrl + '/Bookmark/' + this.user.userId, {
       headers: {
@@ -103,6 +126,4 @@ export class SharedService {
       }
     });
   }
-
-
 }

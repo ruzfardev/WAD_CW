@@ -17,6 +17,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserService } from './user.service';
 import { NavigationComponent } from './navigation/navigation.component';
+import {AuthGuardService} from "./authguard.service";
+import { MyRecipesComponent } from './my-recipes/my-recipes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,8 @@ import { NavigationComponent } from './navigation/navigation.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    NavigationComponent
+    NavigationComponent,
+    MyRecipesComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     ],
-  providers: [SharedService, UserService],
+  providers: [SharedService, UserService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

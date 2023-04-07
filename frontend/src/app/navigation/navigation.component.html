@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand" 
+      <a class="navbar-brand"
       routerLink="/"
       >Dish Discover</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,7 +12,7 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li *ngIf="user" class="nav-item">
-            <a class="nav-link" 
+            <a class="nav-link"
             routerLink="/recipes"
             >Recipes</a>
           </li>
@@ -29,8 +29,10 @@
             class="btn btn-outline-info" type="submit">Sign Up</a>
           </div>
           <div *ngIf="user" class="dropdown">
-            <button class="btn btn-info text-light mx-2 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              {{ user.firstName }}
+            <button class="btn btn-outline-info rounded-5 mx-2 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+<!--              Generate rounded avatar that contains user fistName and lastName's first letters-->
+              <img class="rounded-circle border-info border" src="https://ui-avatars.com/api/?name={{ user.firstName }}+{{ user.lastName }}&background=FFF&color=0dcaf0&size=32" alt="avatar">
+              {{ user.firstName }} {{ user.lastName }}
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>

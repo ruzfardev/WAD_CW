@@ -6,22 +6,21 @@
       </div>
   </div>
   </div>
-  
-  <div class="col-md-3 mb-4"
+  <div class="col-md-3 mb-4" style="min-height: 200px"
    *ngFor="let recipe of RecipesList">
-    <div class="card border-info">
+    <div class="card border-info" style="height: 100%">
       <div class="card-header">
       <button (click)="addBookmark(recipe.id)" *ngIf="!isBookmarked(recipe.id)" class="btn btn-outline-info rounded-circle p-2 d-flex justify-content-center align-items-center">
         <i  class="material-icons fs-6">bookmark</i>
       </button>
       </div>
-      <div class="card-body">
+      <div class="card-body d-flex flex-column" style="justify-content: space-between">
         <h5 class="card-title">{{ recipe.recipeName }}</h5>
         <p class="card-text"
-          style="max-height: 40px; overflow-y: hidden;"
+          style="max-height: 90px; overflow-y: hidden;"
         >{{ recipe.description }}</p>
         <div class="d-flex g-3 justify-content-between">
-            <a 
+            <a
               *ngIf="recipe.userId === user.userId"
             class="btn btn-success d-flex justify-content-center text-light" type="button"
             [routerLink]="[

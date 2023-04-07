@@ -10,7 +10,7 @@ import { UserService } from 'src/app/user.service';
   styleUrls: ['./detailed-view.component.css']
 })
 export class DetailedViewComponent {
-  
+
     RecipeId: any;
     Recipe: any = {};
     user: any;
@@ -30,5 +30,12 @@ export class DetailedViewComponent {
 
   back() {
     this.router.navigate(['/recipes']);
+  }
+
+  deleteRecipe() {
+    this.service.deleteRecipe(this.RecipeId).subscribe((data: any) => {
+      alert("Recipe deleted successfully");
+      this.back();
+    });
   }
 }

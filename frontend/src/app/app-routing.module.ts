@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DetailedViewComponent } from './recipes/detailed-view/detailed-view.component';
+import {AuthGuardService} from "./authguard.service";
+import {MyRecipesComponent} from "./my-recipes/my-recipes.component";
 
 const routes: Routes = [
   {
@@ -17,19 +19,21 @@ const routes: Routes = [
   },
   {
     path:'register', component: RegisterComponent
-  }
-  ,
-  {
-    path: 'recipes', component: RecipesComponent
   },
   {
-    path: 'recipes/add', component: AddEditRecipesComponent
+    path: 'recipes', component: RecipesComponent, canActivate: [AuthGuardService]
   },
   {
-    path: 'recipes/:id', component: DetailedViewComponent
+    path: 'recipes/add', component: AddEditRecipesComponent, canActivate: [AuthGuardService]
   },
   {
-    path: 'recipes/edit/:id', component: AddEditRecipesComponent
+    path: 'recipes/:id', component: DetailedViewComponent, canActivate: [AuthGuardService]
+  },
+  {
+    path: 'recipes/edit/:id', component: AddEditRecipesComponent , canActivate: [AuthGuardService]
+  },
+  {
+    path: 'my-recipes', component: MyRecipesComponent, canActivate: [AuthGuardService]
   }
 ];
 

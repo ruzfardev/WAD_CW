@@ -30,7 +30,7 @@
                 </button>
             </div>
             <button (click)="back()" class="btn btn-info btn-block mt-3">Back</button>
-            <button *ngIf="user.userId === Recipe.userId" (click)="back()" class="btn mx-3 btn-success btn-block mt-3">Edit</button>
-            <button *ngIf="user.userId === Recipe.userId" (click)="back()" class="btn btn-danger btn-block mt-3">Delete</button>
+            <button *ngIf="user.userId === Recipe.userId" [routerLink]="['/recipes/edit',RecipeId]" class="btn mx-3 btn-success btn-block mt-3">Edit</button>
+            <button *ngIf="user.userId === Recipe.userId" (click)="deleteRecipe()" class="btn btn-danger btn-block mt-3">Delete</button>
         </div>
     </div>
