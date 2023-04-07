@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using WADAPI.DAL;
 using WADAPI.Models;
@@ -20,9 +22,9 @@ namespace WADAPI.Repository
             ctx.SaveChanges();
         }
 
-        public void DeleteBookmark(int userId)
+        public void DeleteBookmark(int id)
         {
-            var bookmark = ctx.Bookmarks.FirstOrDefault(x => x.UserId == userId);
+            var bookmark = ctx.Bookmarks.FirstOrDefault(x => x.Id == id);
             if (bookmark != null)
             {
                 ctx.Bookmarks.Remove(bookmark);

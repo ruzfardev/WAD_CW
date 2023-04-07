@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Transactions;
+using System.Web.Http;
 using Microsoft.AspNetCore.Mvc;
 using WADAPI.Models;
 using WADAPI.Repository;
@@ -8,7 +10,7 @@ using WADAPI.Repository;
 
 namespace WADAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Microsoft.AspNetCore.Mvc.Route("api/[controller]")]
     [ApiController]
     public class BookmarkController : ControllerBase
     {
@@ -18,25 +20,33 @@ namespace WADAPI.Controllers
             _bookmark = bookmark;
         }
         // GET: api/Bookmark/5
-        [HttpGet("{id}", Name = "GetBookmark")]
+        [Microsoft.AspNetCore.Mvc.HttpGet("{id}", Name = "GetBookmark")]
         public IActionResult Get(int id)
         {
             var userBookmarks = _bookmark.GetBookmarksByUserId(id);
             return new OkObjectResult(userBookmarks);
         }
         // POST: api/Bookmark
-        [HttpPost]
-        public IActionResult Post([FromBody] Bookmarks bookmark)
+        [Microsoft.AspNetCore.Mvc.HttpPost]
+        public IActionResult Post([Microsoft.AspNetCore.Mvc.FromBody] Bookmarks bookmark)
         {
-            using (var scope = new TransactionScope())
+            try
             {
-                _bookmark.AddBookmark(bookmark);
-                scope.Complete();
-                return CreatedAtAction(nameof(Get), new { id = bookmark.Id }, bookmark);
+                using (var scope = new TransactionScope())
+                {
+                    _bookmark.AddBookmark(bookmark);
+                    scope.Complete();
+                    return CreatedAtAction(nameof(Get), new { id = bookmark.Id }, bookmark);
+                }
             }
+            catch (Exception e)
+            {
+                return CreatedAtAction(nameof(Get), new EmptyResult(), e.Message);
+            }
+            
         }
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
+        [Microsoft.AspNetCore.Mvc.HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             _bookmark.DeleteBookmark(id);

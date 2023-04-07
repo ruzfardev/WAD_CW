@@ -45,7 +45,7 @@ namespace WADAPI.Controllers
             }
         }
         // PUT: api/Users/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public IActionResult Put([FromBody] Users user)
         {
             if (user != null)
@@ -54,7 +54,7 @@ namespace WADAPI.Controllers
                 {
                     _usersRepository.Update(user);
                     scope.Complete();
-                    return new OkResult();
+                    return CreatedAtAction(nameof(Get), new {}, user);
                 }
             }
             return new NoContentResult();

@@ -10,8 +10,11 @@
    *ngFor="let recipe of RecipesList">
     <div class="card border-info" style="height: 100%">
       <div class="card-header">
-      <button (click)="addBookmark(recipe.id)" *ngIf="!isBookmarked(recipe.id)" class="btn btn-outline-info rounded-circle p-2 d-flex justify-content-center align-items-center">
-        <i  class="material-icons fs-6">bookmark</i>
+        <button *ngIf="recipe.isBookmarked" (click)="added()"  class="btn btn-outline-info rounded-circle p-2 d-flex justify-content-center align-items-center">
+          <i  class="material-icons fs-6">bookmark_added</i>
+        </button>
+      <button *ngIf="!recipe.isBookmarked"  (click)="addBookmark(recipe.id)" class="btn btn-outline-info rounded-circle p-2 d-flex justify-content-center align-items-center">
+        <i  class="material-icons fs-6">bookmark_add</i>
       </button>
       </div>
       <div class="card-body d-flex flex-column" style="justify-content: space-between">

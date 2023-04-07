@@ -41,6 +41,7 @@ namespace WADAPI.Repository
         {
             _dbContext.Entry(user).State =
                 Microsoft.EntityFrameworkCore.EntityState.Modified;
+            Save();
         }
         // Login user.
         // Find user with provided email and password if there is user

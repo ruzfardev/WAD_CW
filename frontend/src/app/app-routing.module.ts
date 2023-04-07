@@ -10,6 +10,7 @@ import { DetailedViewComponent } from './recipes/detailed-view/detailed-view.com
 import {AuthGuardService} from "./authguard.service";
 import {MyRecipesComponent} from "./my-recipes/my-recipes.component";
 import {ProfileComponent} from "./profile/profile.component";
+import {BookmarksComponent} from "./recipes/bookmarks/bookmarks.component";
 
 const routes: Routes = [
   {
@@ -38,6 +39,9 @@ const routes: Routes = [
   },
   {
     path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]
+  },
+  {
+    path: 'bookmarks', component: BookmarksComponent, canActivate: [AuthGuardService]
   }
 ];
 

@@ -77,7 +77,7 @@ namespace WADAPI.Controllers
             return new OkResult();
         }
 
-        [HttpPut("{id}")]
+        [HttpPut()]
         public IActionResult UpdateRecipe([FromBody] Recipes recipe)
         {
             if (recipe != null)

@@ -10,57 +10,60 @@ import { SharedService } from '../../shared.service';
 export class ShowRecipesComponent {
   RecipesList: any = [];
   isLoading: boolean = false;
-  isBookmarksLoading: boolean = false;
   user: any;
   userSubscription: Subscription;
-  userBookmarks: any = [];
+  bookmarkSubs: Subscription;
+  bookmarks: any[] = [];
   constructor(public service: SharedService, private userService: UserService) {
     this.userSubscription = this.userService.getUserSubject().subscribe((user: any) => {
       this.user = user;
     });
+    this.bookmarkSubs = this.service.getUserBookmarks().subscribe((bookmarks: any) => {
+      this.bookmarks = bookmarks;
+    } );
     // this.userBookmarks = this.service.getUserBookmarks();
   }
 
   ngOnInit():void {
-    this.refreshRecipesList();
-    this.isBookmarksLoading = true;
-    // this.userBookmarks = this.service.getUserBookmarks().subscribe((bookmarks: any) => {
-    //   this.userBookmarks = bookmarks;
-    //   this.isBookmarksLoading = false;
-    // } );
-  }
-
-  refreshRecipesList() {
     this.isLoading = true;
-    this.service.getRecipeList().subscribe(data => {
-      this.RecipesList = data;
-      this.isLoading = false;
-    }
-  );
-  }
-  isBookmarked(recipeId: number): boolean {
-    // Check if the recipe is bookmarked by the current user
-    // if (this.userBookmarks && !this.isBookmarksLoading) {
-    //   console.log(this.userBookmarks);
-    //   console.log(this.RecipesList);
-    //   this.userBookmarks.forEach((bookmark: any) => {
-    //     if (bookmark.recipeId === recipeId) {
-    //       return true;
-    //     }else{
-    //       return false;
-    //     }
-    //   });
-    // }
-    return false;
-
-  }
-
-  addBookmark(recipeId: number) {
-    this.service.addBookmark(recipeId).subscribe((data: any) => {
-       alert("Recipe bookmarked successfully");
-    },
-      (error: any) => {
-        alert(error.erro);
+    this.service.getUserBookmarks().subscribe((bookmarks: any) => {
+      this.bookmarks = bookmarks;
+      this.service.getRecipeList().subscribe((recipes: any) => {
+        this.RecipesList = recipes;
+        this.RecipesList.forEach((recipe: any) => {
+          const isBookmarked = this.bookmarks.some((bookmark: any) => bookmark.recipeId === recipe.id);
+          recipe.isBookmarked = isBookmarked;
+        });
+        this.isLoading = false;
+      }, (error: any) => {
+        console.error('Error getting recipes: ', error);
+        alert('Error getting recipes');
+        this.isLoading = false;
       });
+    }, (error: any) => {
+      console.error('Error getting bookmarks: ', error);
+      alert('Error getting bookmarks');
+      this.isLoading = false;
+    });
   }
+  ngOnDestroy(): void {
+    this.bookmarkSubs.unsubscribe();
+  }
+
+  added(){
+    alert("Recipe already bookmarked");
+  }
+  addBookmark(recipeId: number) {
+    const recipeIndex = this.RecipesList.findIndex((recipe: any) => recipe.id === recipeId);
+    if (recipeIndex !== -1) {
+      this.service.addBookmark(recipeId).subscribe((data: any) => {
+          alert("Recipe bookmarked successfully");
+          this.RecipesList[recipeIndex].isBookmarked = true;
+        },
+        (error: any) => {
+          alert('Error bookmarking recipe');
+        });
+    }
+  }
+
 }
