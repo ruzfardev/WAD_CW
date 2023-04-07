@@ -44,13 +44,13 @@ namespace WADAPI.Controllers
         }
         // PUT: api/Category/5
         [HttpPut("{id}")]
-        public IActionResult Put([FromBody] Categories category, int id)
+        public IActionResult Put([FromBody] Categories category)
         {
             if (category != null)
             {
                 using (var scope = new TransactionScope())
                 {
-                    _categoryRepository.Update(category, id);
+                    _categoryRepository.Update(category);
                     scope.Complete();
                     return new OkResult();
                 }

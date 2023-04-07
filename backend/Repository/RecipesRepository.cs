@@ -1,5 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net;
+using System.Transactions;
+using System.Web.Http;
+using System.Web.Http.Results;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using WADAPI.DAL;
 using WADAPI.Models;
@@ -36,21 +44,20 @@ namespace WADAPI.Repository
             return ctx.Recipes.Find(id);
         }
 
-        public void Update(Recipes entity, int id)
+        public void Update(Recipes entity)
         {
-            var existingEntity = ctx.Recipes.FirstOrDefault(r => r.Id == id);
-
-            if (existingEntity != null)
-            {
-                ctx.Entry(entity).State =
-                    Microsoft.EntityFrameworkCore.EntityState.Modified;
-                Save();
-            }
+            ctx.Entry(entity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            Save();
         }
 
         public void Save()
         {
             ctx.SaveChanges();
+        }
+
+        public IEnumerable<Recipes> GetByUserId(int userId)
+        {
+            return ctx.Recipes.Where(x=>x.UserId == userId).ToList();
         }
     }
 }

@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Http;
+using System.Web.Http.Results;
 using WADAPI.DAL;
 using WADAPI.Models;
 
@@ -36,15 +39,19 @@ namespace WADAPI.Repository
             return ctx.Categories.Find(id);
         }
 
-        public void Update(Categories category, int id)
+        public IEnumerable<Categories> GetByUserId(int userId)
         {
-            ctx.Entry(category).State =
-                Microsoft.EntityFrameworkCore.EntityState.Modified;
+            throw new System.NotImplementedException();
         }
 
         public void Save()
         {
             ctx.SaveChanges();
+        }
+
+        public void Update(Categories entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

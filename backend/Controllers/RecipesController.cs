@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Transactions;
 using Microsoft.AspNetCore.Cors;
@@ -28,6 +29,13 @@ namespace WADAPI.Controllers
         public IActionResult Get()
         {
             var recipes = _recipesRepository.GetAll();
+            return new OkObjectResult(recipes);
+        }
+
+        [HttpGet, Route("byUser/{userId}", Name = "GetByUserId")]
+        public IActionResult GetByUserId(int userId)
+        {
+            var recipes = _recipesRepository.GetByUserId(userId);
             return new OkObjectResult(recipes);
         }
         // GET: api/Recipes/5
@@ -60,25 +68,28 @@ namespace WADAPI.Controllers
             }
             return CreatedAtAction(nameof(Get), new { id = recipe.UserId }, newRecipe);
         }
-        // PUT: api/Recipes/5
-        [HttpPut("{id}")]
-        public IActionResult Put([FromBody] Recipes recipe, int id)
-        {
-            if (recipe != null)
-            {
-                using var scope = new TransactionScope();
-                _recipesRepository.Update(recipe, id);
-                scope.Complete();
-                return new OkResult();
-            }
-            return new NoContentResult();
-        }
+        
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             _recipesRepository.Delete(id);
             return new OkResult();
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateRecipe([FromBody] Recipes recipe)
+        {
+            if (recipe != null)
+            {
+                using (var scope = new TransactionScope())
+                {
+                    _recipesRepository.Update(recipe);
+                    scope.Complete();
+                    return new OkResult();
+                }
+            }
+            return new NoContentResult();
         }
     }
 }
