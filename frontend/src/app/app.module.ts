@@ -19,6 +19,8 @@ import { UserService } from './user.service';
 import { NavigationComponent } from './navigation/navigation.component';
 import {AuthGuardService} from "./authguard.service";
 import { MyRecipesComponent } from './my-recipes/my-recipes.component';
+import { ProfileComponent } from './profile/profile.component';
+import { BookmarksComponent } from './recipes/bookmarks/bookmarks.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,9 @@ import { MyRecipesComponent } from './my-recipes/my-recipes.component';
     LoginComponent,
     RegisterComponent,
     NavigationComponent,
-    MyRecipesComponent
+    MyRecipesComponent,
+    ProfileComponent,
+    BookmarksComponent
   ],
   imports: [
     BrowserModule,

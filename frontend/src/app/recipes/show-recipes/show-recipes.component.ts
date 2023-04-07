@@ -57,7 +57,10 @@ export class ShowRecipesComponent {
 
   addBookmark(recipeId: number) {
     this.service.addBookmark(recipeId).subscribe((data: any) => {
-      console.log(data);
-    });
+       alert("Recipe bookmarked successfully");
+    },
+      (error: any) => {
+        alert(error.erro);
+      });
   }
 }

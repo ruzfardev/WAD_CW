@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { DetailedViewComponent } from './recipes/detailed-view/detailed-view.component';
 import {AuthGuardService} from "./authguard.service";
 import {MyRecipesComponent} from "./my-recipes/my-recipes.component";
+import {ProfileComponent} from "./profile/profile.component";
 
 const routes: Routes = [
   {
@@ -34,6 +35,9 @@ const routes: Routes = [
   },
   {
     path: 'my-recipes', component: MyRecipesComponent, canActivate: [AuthGuardService]
+  },
+  {
+    path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]
   }
 ];
 

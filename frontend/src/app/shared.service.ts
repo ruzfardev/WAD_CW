@@ -14,7 +14,6 @@ export class SharedService {
       this.user = user;
     });
   }
-
   loginUser(val: any) {
     try {
       const response = this.https.post(this.APIUrl + '/Users/Login', val);
@@ -30,11 +29,23 @@ export class SharedService {
       throw new Error(errMsg);
     }
   }
-
   registerUser(val: any) {
     return this.https.post(this.APIUrl + '/Users', val);
   }
-
+  getUserById(id: number): Observable<any> {
+    return this.https.get<any>(this.APIUrl + '/Users/' + id, {
+      headers: {
+        'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": "*"
+      }
+    } );
+  }
+  updateUser(val: any, id: number) {
+    return this.https.put(this.APIUrl + '/Users', {
+      ...val,
+      userId: id
+    });
+  }
   getRecipeList(): Observable<any[]> {
     return this.https.get<any>(this.APIUrl + '/Recipes', {
       headers: {
@@ -43,7 +54,6 @@ export class SharedService {
       }
     });
   }
-
   addRecipe(val: any) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -56,7 +66,6 @@ export class SharedService {
       }
     , {headers});
   }
-
   updateRecipe(val: any, id: number) {
     return this.https.put(this.APIUrl + `/Recipes`,
       {
@@ -67,7 +76,6 @@ export class SharedService {
       }
     );
   }
-
   getCategories(): Observable<any[]> {
     return this.https.get<any>(this.APIUrl + '/Category', {
       headers: {
@@ -75,7 +83,6 @@ export class SharedService {
         "Access-Control-Allow-Origin": "*"
       }});
   }
-
   getRecipeById(val: number): Observable<any> {
     return this.https.get<any>(this.APIUrl + '/Recipes/' + val, {
       headers: {
@@ -84,9 +91,9 @@ export class SharedService {
       }
     });
   }
-  getRecipeByUserId(val: number): Observable<any> {
+  getRecipeByUserId(userId: number): Observable<any> {
     try {
-      const response = this.https.get(this.APIUrl + '/Recipes/byUser/' + val, {
+      const response = this.https.get(this.APIUrl + '/Recipes/byUser/' + userId, {
         headers: {
           'Content-Type': 'application/json',
           "Access-Control-Allow-Origin": "*"
@@ -97,7 +104,6 @@ export class SharedService {
       throw new Error('Something went wrong');
     }
   }
-
   addBookmark(recipeId: number) {
     try {
       const response = this.https.post(this.APIUrl + '/Bookmark', {
@@ -109,7 +115,6 @@ export class SharedService {
       throw new Error('Something went wrong');
     }
   }
-
   deleteRecipe(id: number) {
     try {
       const response = this.https.delete(this.APIUrl + '/Recipes/' + id);
